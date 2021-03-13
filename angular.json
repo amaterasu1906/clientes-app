@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "clientes-app"
+  "defaultProject": "clientes-app",
+  "cli": {
+    "analytics": "e7391221-3354-4a71-baa6-177494315bad"
+  }
 }
