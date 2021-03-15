@@ -7,20 +7,29 @@ import { ClientesComponent } from './clientes/clientes.component';
 import { HeaderComponent } from './header/header/header.component';
 import { FooterComponent } from './footer/footer/footer.component';
 import { ClienteService } from './service/cliente.service';
+import { HttpClientModule } from '@angular/common/http';
+import { FormComponent } from './clientes/form/form.component';
+import { FormsModule } from '@angular/forms';
+import { SweetalertServiceService } from './service/sweetalert-service.service';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientesComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    FormComponent    
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
-    ClienteService
+    ClienteService,
+    SweetalertServiceService
   ],
   bootstrap: [AppComponent]
 })
