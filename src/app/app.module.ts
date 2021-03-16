@@ -9,7 +9,7 @@ import { FooterComponent } from './footer/footer/footer.component';
 import { ClienteService } from './service/cliente.service';
 import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './clientes/form/form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetalertServiceService } from './service/sweetalert-service.service';
 
 
@@ -19,13 +19,14 @@ import { SweetalertServiceService } from './service/sweetalert-service.service';
     ClientesComponent,
     HeaderComponent,
     FooterComponent,
-    FormComponent    
+    FormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     ClienteService,

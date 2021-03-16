@@ -1,29 +1,52 @@
+<ul *ngIf="errores != null && errores.length > 0" class="alert alert-danger">
+    <li *ngFor="let err of errores">
+        {{err}}
+    </li>
+</ul>
 <div class="card bg-black">
     <div class="card-header">
         {{titulo}}
     </div>
     <div class="card-body">
-        <form>
+        <form [formGroup]="formCliente">
             <div class="form-group row">
                 <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre">
+                    <input type="text" class="form-control" name="nombre" formControlName="nombre">
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="formCliente.controls['nombre'].dirty && formCliente.controls['nombre'].invalid">
+                    <div *ngIf="formCliente.controls['nombre'].errors !== null && formCliente.controls['nombre'].errors.required">
+                        El nombre es requerido.
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="apellido" class="col-form-label col-sm-2">Apellido</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.apellido" name="apellido">
+                    <input type="text" class="form-control" name="apellido" formControlName="apellido">
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="formCliente.controls['apellido'].dirty && formCliente.controls['apellido'].invalid">
+                    <div *ngIf="formCliente.controls['apellido'].errors !== null && formCliente.controls['apellido'].errors.required">
+                        El apellido es requerido.
+                    </div>
                 </div>
             </div>
             <div class="form-group row">
                 <label for="email" class="col-form-label col-sm-2">Email</label>
                 <div class="col-sm-6">
-                    <input type="text" class="form-control" [(ngModel)]="cliente.email" name="email">
+                    <input type="text" class="form-control" name="email" formControlName="email">
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="formCliente.controls['email'].dirty && formCliente.controls['email'].invalid">
+                    <div *ngIf="formCliente.controls['email'].errors !== null && formCliente.controls['email'].errors.required">
+                        El email es requerido.
+                    </div>
+                    <div *ngIf="formCliente.controls['email'].errors !== null && formCliente.controls['email'].errors.email">
+                        El email no es válido
+                    </div>
                 </div>
             </div>
-            <input *ngIf="!cliente.id" type="submit" value="Crear" (click)="create()" class="btn btn-primary">
-            <input *ngIf="cliente.id" type="submit" value="Actualizar" (click)="update()" class="btn btn-primary">
+            <button *ngIf="!updateBoton" [disabled]="!formCliente.valid"  (click)="create()" class="btn btn-primary">Crear</button>
+            <button *ngIf="updateBoton" [disabled]="!formCliente.valid" (click)="update()" class="btn btn-primary">Actualizar</button>
         </form>
     </div>
 </div>

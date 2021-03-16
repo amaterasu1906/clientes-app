@@ -27,7 +27,7 @@ export class ClientesComponent implements OnInit {
   delete(cliente: Cliente){
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
-        confirmButton: 'btn btn-success',
+        confirmButton: 'btn btn-success mx-2',
         cancelButton: 'btn btn-danger'
       },
       buttonsStyling: false
@@ -39,15 +39,14 @@ export class ClientesComponent implements OnInit {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Eliminar',
-      cancelButtonText: 'Cancelar',
-      reverseButtons: true
+      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
         this.clienteService.delete(cliente.id).subscribe((response)=>{
           this.loadClientes();
           swalWithBootstrapButtons.fire(
             'Eliminado con exito!',
-            'Your file has been deleted.',
+            cliente.nombre + " se ha eliminado.",
             'success'
           )
         });
