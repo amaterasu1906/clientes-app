@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +11,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormComponent } from './clientes/form/form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SweetalertServiceService } from './service/sweetalert-service.service';
+import { registerLocaleData } from '@angular/common';
+import localeMX from '@angular/common/locales/es-MX';
 
+registerLocaleData(localeMX, 'es');
 
 @NgModule({
   declarations: [
@@ -30,7 +33,8 @@ import { SweetalertServiceService } from './service/sweetalert-service.service';
   ],
   providers: [
     ClienteService,
-    SweetalertServiceService
+    SweetalertServiceService,
+    { provide: LOCALE_ID, useValue: 'es'}
   ],
   bootstrap: [AppComponent]
 })
